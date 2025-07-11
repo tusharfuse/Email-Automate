@@ -3,6 +3,7 @@ from .models import Inquiry, Patient, Claim
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib import messages
 
 @csrf_exempt
 def index(request):
@@ -105,6 +106,7 @@ def index(request):
             logger = logging.getLogger(__name__)
             logger.error(f"Failed to send email: {e}")
 
+        messages.success(request, "Form submitted successfully!")
         return redirect('index')
 
     return render(request, 'inquiry/index.html')
