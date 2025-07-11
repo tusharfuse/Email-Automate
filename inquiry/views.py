@@ -61,7 +61,7 @@ def index(request):
             patient_count += 1
 
         # Prepare email content
-        admin_email = 'tusharfuse1802@gmail.com'  
+        admin_email = 'akshay.kumar@onesmarter.com'  
         subject = 'New Missing Claims Inquiry Submitted'
         message_lines = [
             "New Missing Claims Inquiry Submitted",
