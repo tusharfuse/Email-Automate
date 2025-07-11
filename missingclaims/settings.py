@@ -8,7 +8,7 @@ SECRET_KEY = 'replace-this-with-a-secure-key'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['email-automate-1-p8h1.onrender.com']
 
 # Application definition
 
