@@ -1,0 +1,338 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Missing Claims Inquiry</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <!-- flatpickr CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <!-- flatpickr JS -->
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f3f6fb;
+      color: #333;
+      padding: 10px;
+    }
+    .form-card {
+      background: #fff;
+      border-radius: 8px;
+      padding: 12px 16px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      max-width: 860px;
+      margin: 0 auto;
+      border: 1px solid #ddd;
+    }
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-right: 12px;
+    }
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .header-center {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .logo-placeholder {
+      width: 62px;
+      height: 50px;
+    }
+    .header-center h1 {
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .header-center p {
+      font-size: 12px;
+    }
+    .header-bottom {
+      border-top: 1px solid #ccc;
+      margin-top: 8px;
+      padding-top: 6px;
+      font-size: 11px;
+      text-align: center;
+    }
+    .header-bottom span {
+      margin: 2px 6px;
+      display: inline-block;
+    }
+    h2 {
+      text-align: center;
+      font-weight: 600;
+      font-size: 16px;
+      margin: 8px 0;
+    }
+    label {
+      display: block;
+      margin-top: 8px;
+      font-weight: 600;
+      font-size: 12px;
+    }
+    input[type="text"],
+    input[type="date"],
+    input[type="number"] {
+      width: 100%;
+      padding: 6px;
+      margin-top: 4px;
+      font-size: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #f9f9f9;
+    }
+    .row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .row > div {
+      flex: 1;
+    }
+    .section {
+      background-color: #e9f1ff;
+      padding: 10px;
+      border-radius: 6px;
+      margin-top: 14px;
+    }
+    .section h3 {
+      margin: 0 0 6px;
+      font-size: 14px;
+    }
+    .claim-pair {
+      display: flex;
+      gap: 10px;
+      margin-top: 6px;
+    }
+    .claim-pair input {
+      flex: 1;
+    }
+    .btn-group {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    button {
+      padding: 8px 20px;
+      background-color: #0073e6;
+      color: #fff;
+      font-size: 13px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005bb5;
+    }
+    @media (max-width: 600px) {
+      .claim-pair, .row {
+        flex-direction: column;
+      }
+    }
+    @media print {
+      @page {
+        size: A4;
+        margin: 20mm;
+      }
+      body {
+        background: white;
+        color: black;
+        padding: 0;
+        margin: 0;
+        font-size: 12pt;
+      }
+      input, button, .btn-group {
+        display: none !important;
+      }
+      label {
+        font-weight: bold;
+        margin-top: 6px;
+      }
+      input::before {
+        content: attr(value);
+        white-space: pre;
+      }
+      .form-card {
+        border: none;
+        box-shadow: none;
+        width: 100%;
+        transform: scale(1);
+        transform-origin: top center;
+        padding: 0;
+      }
+      .section {
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
+        margin-top: 0;
+        page-break-inside: avoid;
+      }
+      .claim-pair {
+        flex-direction: column;
+        gap: 2px;
+        margin-top: 0;
+      }
+      .header-top, .header-bottom {
+        text-align: center;
+        justify-content: center !important;
+      }
+      .logo, .logo-placeholder {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-card">
+    <div class="header-top">
+      <div class="logo">
+        <img src="{% static 'inquiry/logo.png' %}" alt="Logo">
+      </div>
+      <div class="header-center">
+        <h1>MASTERS, MATES AND PILOTS PLANS</h1>
+        <p>700 MARITIME BOULEVARD, SUITE A</p>
+        <p>LINTHICUM HEIGHTS, MARYLAND 21090-1966</p>
+      </div>
+      <div class="logo-placeholder"></div>
+    </div>
+
+    <div class="header-bottom">
+      <span><strong>ADMINISTRATOR:</strong> Patrick McCullough</span>
+      <span><strong>TELEPHONE:</strong> (410) 850-8500</span>
+      <span><strong>TELEFAX:</strong> (410) 850-8655</span>
+      <span><strong>EMAIL:</strong> planoffice@mmpplans.com</span>
+    </div>
+
+    <h2>Missing Claims Inquiry</h2>
+    <p style="text-align: center; font-size: 12px;">
+      Complete this form to help us research missing claims not sent to the client/provider.
+    </p>
+
+    <form id="claimsForm" method="POST" action="{% url 'index' %}">
+      {% csrf_token %}
+      <label>Client Name:</label>
+      <input type="text" name="clientName" value="Masters, Mates & Pilots Health & Benefits Plan" required>
+
+      <label>Claims type (Medicare or VA Crossover, Dental, or Commercial):</label>
+      <input type="text" name="claimsType" value="Medicare Crossover" required>
+
+      <label>Provider Name:</label>
+      <input type="text" name="providerName" required>
+
+      <div class="row">
+        <div>
+          <label>Tax ID:</label>
+          <input type="text" name="taxId" required>
+        </div>
+        <div>
+          <label>NPI:</label>
+          <input type="text" name="npi" required>
+        </div>
+      </div>
+
+      <!-- Patients -->
+      <div class="section">
+        <h3>Patient (1) Info:</h3>
+        <label>Patient Name:</label>
+        <input type="text" name="patient1Name" required>
+        <label>Date of Birth:</label>
+        <input type="text" name="patient1DOB" class="dob-picker" required>
+        <label>Claim Info (DOS and Amount):</label>
+        <div class="claim-pair"><input type="text" name="p1dos1" required><input type="number" name="p1amount1" placeholder="Amount ($)" required></div>
+        <div class="claim-pair"><input type="text" name="p1dos2"><input type="number" name="p1amount2" placeholder="Amount ($)"></div>
+        <div class="claim-pair"><input type="text" name="p1dos3"><input type="number" name="p1amount3" placeholder="Amount ($)"></div>
+      </div>
+
+      <div class="section">
+        <h3>Patient (2) Info:</h3>
+        <label>Patient Name:</label>
+        <input type="text" name="patient2Name" required>
+        <label>Date of Birth:</label>
+        <input type="text" name="patient2DOB" class="dob-picker" required>
+        <label>Claim Info (DOS and Amount):</label>
+        <div class="claim-pair"><input type="text" name="p2dos1" required><input type="number" name="p2amount1" placeholder="Amount ($)" required></div>
+        <div class="claim-pair"><input type="text" name="p2dos2"><input type="number" name="p2amount2" placeholder="Amount ($)"></div>
+        <div class="claim-pair"><input type="text" name="p2dos3"><input type="number" name="p2amount3" placeholder="Amount ($)"></div>
+      </div>
+
+      <div class="section">
+        <h3>Patient (3) Info:</h3>
+        <label>Patient Name:</label>
+        <input type="text" name="patient3Name" required>
+        <label>Date of Birth:</label>
+        <input type="text" name="patient3DOB" class="dob-picker" required>
+        <label>Claim Info (DOS and Amount):</label>
+        <div class="claim-pair"><input type="text" name="p3dos1" required><input type="number" name="p3amount1" placeholder="Amount ($)" required></div>
+        <div class="claim-pair"><input type="text" name="p3dos2"><input type="number" name="p3amount2" placeholder="Amount ($)"></div>
+        <div class="claim-pair"><input type="text" name="p3dos3"><input type="number" name="p3amount3" placeholder="Amount ($)"></div>
+      </div>
+
+      <div class="btn-group">
+        <button type="submit">Submit Form</button>
+        <button type="button" id="downloadBtn">Download as PDF</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      const form = document.getElementById("claimsForm");
+      const inputs = form.querySelectorAll("input");
+
+      let y = 10;
+      doc.setFontSize(12);
+      doc.text("Missing Claims Inquiry Form", 10, y);
+      y += 10;
+
+      inputs.forEach(input => {
+        if (input.name && input.value) {
+          let value = input.value;
+          if (input.type === "date") {
+            const date = new Date(value);
+            if (!isNaN(date)) {
+              const mm = String(date.getMonth() + 1).padStart(2, '0');
+              const dd = String(date.getDate()).padStart(2, '0');
+              const yyyy = date.getFullYear();
+              value = `${mm}/${dd}/${yyyy}`;
+            }
+          }
+          doc.text(`${input.name}: ${value}`, 10, y);
+          y += 8;
+        }
+      });
+
+      doc.save("Missing_Claims_Inquiry.pdf");
+    });
+  </script>
+
+  <script>
+    // Initialize flatpickr on DOB fields with mm-dd-yyyy format
+    flatpickr(".dob-picker", {
+      dateFormat: "m-d-Y",
+      allowInput: true,
+      altInput: true,
+      altFormat: "m-d-Y",
+      maxDate: "today"
+    });
+  </script>
+</body>
+</html>
