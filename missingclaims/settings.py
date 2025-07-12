@@ -8,7 +8,7 @@ SECRET_KEY = 'replace-this-with-a-secure-key'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['email-automate-1-p8h1.onrender.com']
+ALLOWED_HOSTS = ['email-automate-1-p8h1.onrender.com', '127.0.0.1']
 
 # Application definition
 
@@ -25,6 +25,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

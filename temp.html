@@ -1,0 +1,155 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    @page {
+      size: A4;
+      margin: 30px;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      color: #000;
+      padding: 0;
+      margin: 0;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    p.instructions {
+      text-align: center;
+      margin: 0 0 12px 0;
+      font-size: 11px;
+    }
+
+    .field-group {
+      margin-bottom: 10px;
+    }
+
+    .label {
+      display: inline-block;
+      width: 320px;
+      font-weight: bold;
+      vertical-align: top;
+    }
+
+    .field {
+      display: inline-block;
+      border-bottom: 1px solid #000;
+      width: 360px;
+      min-height: 14px;
+      padding: 1px 3px;
+    }
+
+    .half-label {
+      display: inline-block;
+      width: 50px;
+      font-weight: bold;
+    }
+
+    .half-field {
+      display: inline-block;
+      border-bottom: 1px solid #000;
+      width: 150px;
+      min-height: 14px;
+      padding: 1px 3px;
+    }
+
+    .section-title {
+      margin: 18px 0 8px 0;
+      font-weight: bold;
+    }
+
+    .claim-row {
+      margin-left: 25px;
+      margin-bottom: 4px;
+    }
+
+    .dos-label {
+      display: inline-block;
+      width: 200px;
+      border-bottom: 1px solid #000;
+      min-height: 14px;
+      padding: 1px 3px;
+    }
+
+    .amount-label {
+      display: inline-block;
+      width: 150px;
+      border-bottom: 1px solid #000;
+      min-height: 14px;
+      padding: 1px 3px;
+      margin-left: 10px;
+    }
+
+    .spacer {
+      height: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Missing Claims Inquiry</h1>
+  <p class="instructions">Please complete form for researching missing claims that have not been sent to the client/provider.</p>
+
+  <div class="field-group">
+    <span class="label">Client Name:</span><span class="field">Masters, Mates &amp; Pilots Health &amp; Benefits Plan</span>
+  </div>
+
+  <div class="field-group">
+    <span class="label">Claims type (Medicare or VA Crossover, Dental, or Commercial):</span><span class="field">Medicare Crossover</span>
+  </div>
+
+  <div class="field-group">
+    <span class="label">Provider Name:</span><span class="field">Avinash</span>
+  </div>
+
+  <div class="field-group">
+    <span class="half-label">Tax ID:</span><span class="half-field">453</span>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <span class="half-label">NPI:</span><span class="half-field">123</span>
+  </div>
+
+  
+    <div class="spacer"></div>
+    <div class="section-title">Patient (1) Info:</div>
+
+    <div class="field-group">
+      <span class="label">Patient Name:</span><span class="field">Ak</span>
+    </div>
+
+    <div class="field-group">
+      <span class="label">Date of Birth:</span><span class="field">2025-07-12</span>
+    </div>
+
+    <div class="section-title">Claim Info for Patient (1):</div>
+
+    
+      <div class="claim-row">
+        DOS<span class="dos-label">aa</span>
+        Amount: $<span class="amount-label">1</span>
+      </div>
+    
+      <div class="claim-row">
+        DOS<span class="dos-label">bb</span>
+        Amount: $<span class="amount-label">1</span>
+      </div>
+    
+      <div class="claim-row">
+        DOS<span class="dos-label">cc</span>
+        Amount: $<span class="amount-label">1</span>
+      </div>
+    
+  
+
+</body>
+</html>
+

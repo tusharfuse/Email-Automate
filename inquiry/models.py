@@ -11,13 +11,4 @@ class Inquiry(models.Model):
     telefax = models.CharField(max_length=50, default='(410) 850-8655')
     email = models.EmailField(default='planoffice@mmpplans.com')
     created_at = models.DateTimeField(auto_now_add=True)
-
-class Patient(models.Model):
-    inquiry = models.ForeignKey(Inquiry, related_name='patients', on_delete=models.CASCADE)
-    name = models.CharField(max_length=255)
-    dob = models.DateField()
-
-class Claim(models.Model):
-    patient = models.ForeignKey(Patient, related_name='claims', on_delete=models.CASCADE)
-    date_of_service = models.CharField(max_length=50, blank=True, null=True)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    patients = models.JSONField(blank=True, null=True)  # Store patients and claims as JSON

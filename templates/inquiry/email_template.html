@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Missing Claims Inquiry Email</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
+      margin: 0;
+      padding: 10px;
+    }
+    h2 {
+      font-size: 16px;
+      color: #005bb5;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 5px;
+      margin-top: 20px;
+    }
+    .section {
+      margin-bottom: 20px;
+    }
+    .info-row {
+      margin: 5px 0;
+    }
+    .info-label {
+      font-weight: bold;
+      width: 150px;
+      display: inline-block;
+    }
+    ul.claims-list {
+      list-style-type: disc;
+      margin-left: 40px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Client Information</h2>
+  <div class="section">
+    <div class="info-row"><span class="info-label">Client Name:</span> {{ client_name }}</div>
+    <div class="info-row"><span class="info-label">Claims Type:</span> {{ claims_type }}</div>
+    <div class="info-row"><span class="info-label">Provider Name:</span> {{ provider_name }}</div>
+    <div class="info-row"><span class="info-label">Tax ID:</span> {{ tax_id }}</div>
+    <div class="info-row"><span class="info-label">NPI:</span> {{ npi }}</div>
+  </div>
+
+  <h2>Patients and Claims Details</h2>
+  {% for patient in patients %}
+  <div class="section">
+    <div class="info-row"><span class="info-label">Patient {{ forloop.counter }} Name:</span> {{ patient.name }}</div>
+    <div class="info-row"><span class="info-label">Date of Birth:</span> {{ patient.dob }}</div>
+    <div class="info-row"><span class="info-label">Claims:</span>
+      {% if patient.claims %}
+      <ul class="claims-list">
+        {% for claim in patient.claims %}
+        <li><strong>Date of Service:</strong> {{ claim.date_of_service|default:"N/A" }}<br><strong>Amount:</strong> ${{ claim.amount }}</li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      None
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</body>
+</html>
