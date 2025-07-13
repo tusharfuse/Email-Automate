@@ -2,3 +2,4 @@ Django
 djangorestframework
 whitenoise
 playwright
+gunicorn
