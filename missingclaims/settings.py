@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'replace-this-with-a-secure-key')
 
 DEBUG = os.getenv('DJANGO_DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['https://email-automate-2.onrender.com', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
