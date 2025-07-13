@@ -8,7 +8,7 @@ import tempfile
 from django.conf import settings
 from django.contrib import messages
 from django.core.mail import EmailMessage
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.template.loader import render_to_string, get_template
 from django.urls import reverse
@@ -218,3 +218,6 @@ def download_pdf(request, inquiry_id):
     response = HttpResponse(pdf_bytes, content_type='application/pdf')
     response['Content-Disposition'] = f'attachment; filename="{filename}"'
     return response
+
+def health_check(request):
+    return JsonResponse({'status': 'ok'})

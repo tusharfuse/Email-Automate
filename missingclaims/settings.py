@@ -108,10 +108,11 @@ EMAIL_HOST_PASSWORD = 'Onesmarter@2023'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Run Playwright install on startup in a separate thread
-def run_playwright_install():
-    try:
-        subprocess.check_call(['python', 'manage.py', 'install_playwright'])
-    except Exception as e:
-        logging.getLogger(__name__).error(f"Failed to run install_playwright command: {e}")
+# Disabled Playwright install on startup to troubleshoot 502 error
+# def run_playwright_install():
+#     try:
+#         subprocess.check_call(['python', 'manage.py', 'install_playwright'])
+#     except Exception as e:
+#         logging.getLogger(__name__).error(f"Failed to run install_playwright command: {e}")
 
-threading.Thread(target=run_playwright_install).start()
+# threading.Thread(target=run_playwright_install).start()
