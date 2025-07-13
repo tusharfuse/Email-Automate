@@ -1,10 +1,11 @@
 import os
 from pathlib import Path
+import subprocess
+import threading
+import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-import os
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'replace-this-with-a-secure-key')
 
@@ -105,3 +106,12 @@ EMAIL_HOST_USER = 'support@disruptionsim.com'
 EMAIL_HOST_PASSWORD = 'Onesmarter@2023'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Run Playwright install on startup in a separate thread
+def run_playwright_install():
+    try:
+        subprocess.check_call(['python', 'manage.py', 'install_playwright'])
+    except Exception as e:
+        logging.getLogger(__name__).error(f"Failed to run install_playwright command: {e}")
+
+threading.Thread(target=run_playwright_install).start()
