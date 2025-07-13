@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Missing Claims Inquiry</title>
@@ -215,9 +217,9 @@
           <label>Date of Birth:</label>
           <input type="text" name="patient1DOB" class="dob-picker" required>
           <label>Claim Info:</label>
-          <div class="claim-pair"><input type="text" name="p1dos1" required><input type="number" name="p1amount1" required></div>
-          <div class="claim-pair"><input type="text" name="p1dos2" required><input type="number" name="p1amount2" required></div>
-          <div class="claim-pair"><input type="text" name="p1dos3" required><input type="number" name="p1amount3" required></div>
+          <div class="claim-pair"><input placeholder= "DOS" type="text" name="p1dos1" required><input placeholder="Amount $" type="number" name="p1amount1" required></div>
+          <div class="claim-pair"><input placeholder= "DOS" type="text" name="p1dos2" required><input placeholder="Amount $" type="number" name="p1amount2" required></div>
+          <div class="claim-pair"><input placeholder= "DOS" type="text" name="p1dos3" required><input placeholder="Amount $" type="number" name="p1amount3" required></div>
         </div>
 
         <!-- Patient 2 -->
@@ -228,9 +230,9 @@
           <label>Date of Birth:</label>
           <input type="text" name="patient2DOB" class="dob-picker" >
           <label>Claim Info:</label>
-          <div class="claim-pair"><input type="text" name="p2dos1" ><input type="number" name="p2amount1" ></div>
-          <div class="claim-pair"><input type="text" name="p2dos2" ><input type="number" name="p2amount2" ></div>
-          <div class="claim-pair"><input type="text" name="p2dos3" ><input type="number" name="p2amount3" ></div>
+          <div class="claim-pair"><input placeholder= "DOS" type="text" name="p2dos1" ><input placeholder="Amount $" type="number" name="p2amount1" ></div>
+          <div class="claim-pair"><input placeholder= "DOS" type="text" name="p2dos2" ><input placeholder="Amount $" type="number" name="p2amount2" ></div>
+          <div class="claim-pair"><input placeholder= "DOS" type="text" name="p2dos3" ><input placeholder="Amount $" type="number" name="p2amount3" ></div>
         </div>
 
         <!-- Patient 3 -->
@@ -241,9 +243,9 @@
           <label>Date of Birth:</label>
           <input type="text" name="patient3DOB" class="dob-picker" >
           <label>Claim Info:</label>
-          <div class="claim-pair"><input type="text" name="p3dos1" ><input type="number" name="p3amount1" ></div>
-          <div class="claim-pair"><input type="text" name="p3dos3" ><input type="number" name="p3amount3" ></div>
-          <div class="claim-pair"><input type="text" name="p3dos2" ><input type="number" name="p3amount2" ></div>
+          <div class="claim-pair"><input placeholder= "DOS" type="text" name="p3dos1" ><input placeholder="Amount $" type="number" name="p3amount1" ></div>
+          <div class="claim-pair"><input placeholder= "DOS" type="text" name="p3dos3" ><input placeholder="Amount $" type="number" name="p3amount3" ></div>
+          <div class="claim-pair"><input placeholder= "DOS" type="text" name="p3dos2" ><input placeholder="Amount $" type="number" name="p3amount2" ></div>
         </div>
 
 
