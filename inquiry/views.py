@@ -30,7 +30,7 @@ def _sanitize_filename(text: str) -> str:
 
 def _generate_pdf_with_browser(html_path, output_path):
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = p.chromium.launch(headless=True, args=['--no-sandbox', '--disable-setuid-sandbox'])
         page = browser.new_page()
 
         # Convert backslashes to forward slashes for Windows
@@ -149,9 +149,9 @@ def index(request):
 
             # ── 5.  Email PDF to Admin ──────────────────────────────────
             admin_emails = [
-                'avinashkalmegh93@gmail.com',
+               
                 'tusharfuse1802@gmail.com',
-                'akshay.kumar@onesmarter.com',
+               
             ]
             subject     = 'New Missing Claims Inquiry Submitted'
 
