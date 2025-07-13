@@ -27,3 +27,17 @@ This ensures that Playwright browsers are installed automatically on each deploy
 ---
 
 Please make sure to commit and push these changes before deploying.
+
+## Custom Port Configuration
+
+You can set a custom port for the web service by setting the `PORT` environment variable before starting the service. The default port is 10000.
+
+For example, to run the service on port 8080:
+
+```bash
+export PORT=8080
+```
+
+The Procfile has been updated to bind gunicorn to `0.0.0.0` and use the `PORT` environment variable with a default of 10000.
+
+This helps ensure the service is accessible externally and can use a custom port as needed.
